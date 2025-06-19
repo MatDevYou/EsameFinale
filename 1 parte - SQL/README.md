@@ -31,6 +31,8 @@ Tasto destro su sicurezza --> Nuovo --> Account di accesso --> crea nome utente 
 
 Per mappare i ruoli vedere immagine 1 , selezionare il db corrente e sotto mettere db_owner e lasciare flag public
 
+---
+
 # Con script 
 
 ```
