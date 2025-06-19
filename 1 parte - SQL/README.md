@@ -33,14 +33,18 @@ Per mappare i ruoli vedere immagine 1 , selezionare il db corrente e sotto mette
 
 # Con script 
 
+```
 USE Autovelox;
 CREATE USER swd2325 FOR LOGIN swd2325;
 ALTER ROLE db_owner ADD MEMBER swd2325;
+```
 
 # Fare prova per vedere se owner messo correttamente
 
+```
 USE Treni;
 DROP USER swd2325;
+```
 
 se non esce niente significa che è configurato correttamente
 
