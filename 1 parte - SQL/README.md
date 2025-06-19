@@ -1,16 +1,27 @@
-# Parte di SQL
+# 📦 Backup e Ripristino del Database
 
-Bisogna fare il backup di un suo db e per farlo bisogna 
+Per effettuare il **ripristino** di un database:
 
-Tasto destro su Database --> ripristina database
+1. Aprire SQL Server Management Studio (SSMS).
+2. Fare clic con il tasto destro sulla voce `Database`.
+3. Selezionare **Ripristina database...**.
+4. Seguire la procedura guidata per caricare il file `.bak` del backup.
 
-# Errore nel creare diagramma
+---
 
-Ci crea owner nuovo e ci permette di creare il diagramma
+# ❌ Errore nella Creazione del Diagramma del Database
 
+Se compare un errore durante la creazione del diagramma (es. "utente non è owner del database"), è necessario cambiare il proprietario del database.
+
+Eseguire il seguente script SQL:
+
+```sql
 USE Autovelox;
 GO
 EXEC sp_changedbowner 'sa';
+```
+
+---
 
 # Ci sarà da creare un utente nuovo e si puo o interfaccia o con script
 
@@ -26,5 +37,10 @@ USE Autovelox;
 CREATE USER swd2325 FOR LOGIN swd2325;
 ALTER ROLE db_owner ADD MEMBER swd2325;
 
-# Fare prova
+# Fare prova per vedere se owner messo correttamente
+
+USE Treni;
+DROP USER swd2325;
+
+se non esce niente significa che è configurato correttamente
 
