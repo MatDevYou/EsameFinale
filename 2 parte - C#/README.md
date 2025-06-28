@@ -11,7 +11,9 @@ Gestione pacchetti NuGet -> cerca quello che devi installare
 
 su terminale per collegare db:
 
+```
 Scaffold-DbContext "Server=localhost\SQLEXPRESS;Database=BikeStores;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+```
 
 # Su program.cs 
 

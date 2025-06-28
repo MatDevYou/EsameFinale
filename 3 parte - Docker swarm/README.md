@@ -13,7 +13,7 @@ docker swarm init
 ## Una volta lanciato possiamo creare il file docker-compose.yaml e avviarlo ricordarsi di creare network (overlay) per far comunicare i due container e nel compose specificarlo:
 
 ```
-docker create network --driver=overlay web
+docker network create --driver=overlay web
 ```
 
 ---
