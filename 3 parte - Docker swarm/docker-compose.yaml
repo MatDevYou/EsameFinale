@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  apache:
+    image: httpd:2.4
+    ports:
+      - "8080:80"  # solo per debug, altrimenti gestito da traefik
+    networks:
+      - web
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.apache.rule=Host(`apache.localhost`)"
+        - "traefik.http.routers.apache.entrypoints=web"
+        - "traefik.http.services.apache.loadbalancer.server.port=80"
+      replicas: 1
+
+  traefik:
+    image: traefik:v2.11
+    command:
+      - "--providers.docker.swarmMode=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--api.dashboard=true"
+      - "--api.insecure=true" # disabilita in produzione
+    ports:
+      - "80:80"
+      - "8081:8080" # dashboard
+    networks:
+      - web
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+
+networks:
+  web:
+    external: true
